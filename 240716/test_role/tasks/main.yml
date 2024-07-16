@@ -1,0 +1,7 @@
+---
+# tasks file for test_role
+- name: role's task
+  debug:
+    msg: This is role's task
+  notify: role's handler
+  changed_when: true

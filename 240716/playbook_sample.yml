@@ -1,0 +1,26 @@
+---
+- name: playname
+  hosts: host/group name
+  vars: 
+    - variablename: value
+  vars_files: variable file name
+  roles: role name(directory in playbook)
+  gather_facts: boolean
+  force_handlers: boolean
+  pre_tasks:
+  tasks:
+    - block:
+      - name: 
+        modulename:
+          modulespec:
+        when: conditions
+        loop: -> "{{ item }}""...
+          - loop1
+          - loop2
+        notify: handler name
+        ignore_errors: boolean
+        ignore_unreachable: boolean
+      rescue:
+      always:
+  post_tasks:
+  handlers:

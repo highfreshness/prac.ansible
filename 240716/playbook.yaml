@@ -1,0 +1,31 @@
+- name: This play is test role
+  hosts: host1
+  roles:
+    - role: test_role
+      vars:
+        var01: value01
+    - test_role
+  pre_tasks:
+    - name: pre_tasks
+      debug: 
+        msg: This is pre_task
+      notify: pre's handler
+
+  tasks:
+    - name: task1
+      debug:
+        msg: This is task1
+      notify: 
+        - task's handler
+      changed_when: true
+    # - name: Include role
+    #   include_role:
+    #     name: test_role
+
+  handlers:
+    - name: task's handler
+      debug:
+        msg: This is handler in playbook
+    - name: pre's handler
+      debug:
+        msg: This is call in pre_task

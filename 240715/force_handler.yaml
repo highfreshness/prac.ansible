@@ -1,0 +1,14 @@
+- name: test force_handler
+  hosts: host1
+  force_handlers: true
+  tasks:
+    - name: task1 ok
+      command: ls /tmp
+      notify: call handler
+    - name: task2 error
+      command: ls /error
+    
+  handlers:
+    - name: call handler
+      debug:
+        msg: this is handler

@@ -1,0 +1,12 @@
+- name: test ignore_error
+  hosts: host1, host2
+  tasks:
+    - name: task1 is ok
+      command: ls /tmp
+    - name: task2 is error
+      command: ls /error
+      ignore_errors: true
+      # when: ansible_hostname == "host1"
+    - name: task3 is ok -2
+      command: ls /tmp 
+      

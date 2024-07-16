@@ -1,0 +1,32 @@
+---
+- name: test variables
+  hosts: localhost
+  vars:
+    pkg_name: httpd
+    region:
+      - northeast
+      - southeast
+      - midwest
+    foo:
+      field1: one
+      field2: two
+  tasks:
+    - name: dictionary variable
+      debug:
+        msg: "{{ foo }}"
+    - name: dictionary variable
+      debug:
+        msg: "{{ foo['field1'] }}"
+    - name: list variable all print
+      debug:
+        msg: "{{ region }}"
+    - name: list variable one print
+      debug:
+        msg: "{{ region[0] }}"
+    - name: variable only
+      debug:
+        msg: "{{ pkg_name }}"
+    - name: variable head
+      debug:
+        msg: "{{ pkg_name }} test"
+...

@@ -1,0 +1,12 @@
+- name: test copy
+  hosts: host1
+  tasks:
+    - name: my file copy
+      copy:
+        src: /etc/hosts
+        dest: /tmp/hosts
+    - name: remote copy
+      copy:
+        src: /etc/hosts
+        dest: /tmp/hosts_host1
+        remote_src: true

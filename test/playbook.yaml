@@ -1,0 +1,53 @@
+---
+- name: Play-01
+  hosts: host1
+  tasks:
+    - name: Add user
+      user:
+        name: user01
+        state: present
+        uid: 1020
+
+- name: play-02
+  hosts: host2
+  tasks:
+    - name: Copy files
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+
+- name: play-03
+  hosts: web
+  become: true
+  tasks:
+    - name: Set up package
+      dnf:
+        name: httpd
+        state: latest
+
+- name: play-04
+  hosts: db
+  become: true
+  tasks:
+    - name: Install MySQL
+      yum:
+        name: mariadb-server.x86_64
+        state: present
+
+- name: play-05
+  hosts: host2
+  tasks:
+    - name: Change chmod
+      file:
+        path: /tmp/passwd
+        mode: '666'
+        
+- name: play-06
+  hosts: host1
+  become: true
+  tasks: 
+    - name: Copy file
+      copy:
+        content: ansible-file
+        dest: /root/ansible-file
+...

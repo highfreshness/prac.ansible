@@ -1,0 +1,5 @@
+- name: test filter
+  hosts: host1
+  tasks:
+    - debug:
+        msg: "{{ var01 | hash('sha256') }}"

@@ -1,0 +1,7 @@
+- name: other vars file
+  hosts: localhost
+  vars_files:
+    - var/external_var.yaml
+  tasks:  
+    - debug:
+        msg: "{{ somevar }}"

@@ -1,0 +1,10 @@
+- name: fact test
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: print ifname
+      debug:  
+        msg: "{{ ansible_eth1['ipv4']['address'] }}"
+    - name: custom fact print
+      debug:  
+        msg: "{{ ansible_local }}"

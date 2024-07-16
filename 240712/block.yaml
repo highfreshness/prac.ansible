@@ -1,0 +1,22 @@
+- name: test block
+  hosts: all
+  tasks: 
+    - name: package and service block
+      block:
+        - name: package install
+          dnf:
+            name: nfs-utils
+            state: latest
+          
+        - name: service start
+          service:
+            name: nfs-server
+            state: started
+            enabled: true
+      when: ansible_hostname == "host1"
+      rescue: 
+        - debug:
+           msg: This is rescue 
+      always:
+        - debug:
+            msg: This is always

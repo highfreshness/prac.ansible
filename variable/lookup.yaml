@@ -1,0 +1,7 @@
+- name: This lookup
+  hosts: localhost
+  vars:
+    pr_key: "{{ lookup('file', '/home/vagrant/.ssh/id_rsa') }}"
+  tasks:
+    - debug: 
+        var: pr_key

@@ -1,0 +1,17 @@
+---
+- name: play-01
+  hosts: all # 인벤토리 내 모든 Host
+  tasks: # task의 작업 하나가 모여 하나의 플레이
+    - name: user create
+      user:
+        name: user01
+        state: present
+    - name: ensure apache is at the latest version
+      yum:
+        name: httpd
+        state: latest
+# - name: play-02
+#   hosts: group01
+
+
+...

@@ -1,0 +1,35 @@
+- name: file manage
+  hosts: host1
+  tasks: 
+    - name: file create
+      file:
+        path: /tmp/ansible_file
+        state: touch
+      register: result1
+    - debug:
+        msg: "{{ result1 }}"
+
+    - name: file mode change
+      file:
+        path: /tmp/ansible_file
+        mode: 777
+      register: result2
+    - debug:
+        msg: "{{ result2 }}"
+
+    - name: change owner
+      file:
+        path: /tmp/ansible_file
+        owner: vagrant
+        group: wheel
+      register: result3
+    - debug:
+        msg: "{{ result3 }}"
+
+    - name: file remove
+      file:
+        path: /tmp/ansible_file
+        state: absent
+      register: result4
+    - debug:
+        msg: "{{ result4 }}"

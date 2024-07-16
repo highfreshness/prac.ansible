@@ -1,0 +1,27 @@
+- name: This play is webserver config
+  hosts: host2
+  vars:
+    pkg_name: httpd
+    content_file: index.html
+    fw_rule: http
+    fw_st: enabled
+  tasks:
+    - name: "{{ pkg_name }} package install"
+      dnf:
+        name: "{{ pkg_name }}"
+        state: latest
+    - name: contents copy
+      copy:
+        src: "{{ content_file }}"
+        dest: /var/www/html/index.html
+    - name: firewall rule setting
+      firewalld:
+        service: "{{ fw_rule }}"
+        state: "{{ fw_st }}"
+        immediate: true
+        permanent: true
+    - name: service start
+      service: 
+        name: "{{ pkg_name }}"
+        state: started
+        enabled: true

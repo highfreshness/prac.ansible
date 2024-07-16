@@ -1,0 +1,23 @@
+- name: lineinfile test
+  hosts: host1
+  tasks:
+    - name: create file
+      lineinfile:
+        line: hello world
+        path: /tmp/test_lineinfile
+        create: true
+    - name: edit file
+      lineinfile:
+        line: change text
+        path: /tmp/test_lineinfile
+        regexp: '^hello world'
+    - name: add text
+      lineinfile:
+        line: change text
+        path: /tmp/test_lineinfile
+    - name: after insert text
+      lineinfile:
+        line: after insert
+        path: /tmp/test_lineinfile
+        insertafter: change text
+        

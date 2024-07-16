@@ -1,0 +1,14 @@
+- name: test failed_when
+  hosts: host1
+  tasks:
+    - name: task1 is ok
+      command: hostname
+      register: result
+      failed_when: result['stdout'] == "host1"
+    - name: print result
+      debug:
+        var: result
+    - name: task2 is error
+      command: ls /error
+    - name: task3 is ok
+      command: ls /tmp

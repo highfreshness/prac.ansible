@@ -1,0 +1,13 @@
+- name: test when
+  hosts: host1
+  vars: 
+    vars01: 10
+  tasks:
+    - name: normal using
+      debug:
+        msg: hello world
+    - name: normal using
+      debug:
+        msg: hello world
+      when: vars01 > 5
+      

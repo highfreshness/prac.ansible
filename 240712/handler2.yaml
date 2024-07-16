@@ -1,0 +1,19 @@
+- name: test block
+  hosts: all
+  tasks: 
+    - name: package and service block
+      block:          
+        - name: test handler
+          command: ls /tmp
+          notify: call handler
+      when: ansible_hostname == "host1"
+      rescue: 
+        - debug:
+           msg: This is rescue 
+      always:
+        - debug:
+            msg: This is always
+  handlers:
+    - name: call handler
+      debug:
+        msg: This is handler

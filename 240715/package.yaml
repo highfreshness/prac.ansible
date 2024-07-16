@@ -1,0 +1,6 @@
+- name: package manage
+  dnf:
+    name: "{{ pkg_name }}"
+    state: "{{ pkg_st }}"
+  tags: package
+    

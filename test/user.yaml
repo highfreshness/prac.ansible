@@ -1,0 +1,30 @@
+---
+- name: user test
+  hosts: host1
+  tasks:
+    - name: default user create
+      user:
+        name: ansible-user01
+        state: present
+
+    - name: uid and shell user create
+      user:
+        name: ansible-user02
+        state: present
+        uid: 2000
+        shell: /bin/sh
+
+    - name: group create
+      group:
+        name: ansible-group
+        gid: 3000
+        
+    - name: primary group change
+      user:
+        name: ansible-user01
+        group: ansible-group
+
+    - name: secondary group change
+      user:
+        name: ansible-user02
+        groups: ansible-group

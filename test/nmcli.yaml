@@ -1,0 +1,20 @@
+- name : nmcli test
+  hosts: host1
+  tasks: 
+    - name: Change IP
+      nmcli:
+        type: ethernet
+        conn_name: static
+        ip4: 192.168.56.200/24
+        state: present
+        gw4: 192.168.56.255
+        dns4: 8.8.8.8
+        ifname: eth1
+        method4: manual
+
+    - name: Change dns priority /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: "8.8.8.8 dns"
+        state: present
+

@@ -1,0 +1,10 @@
+- name: control fact
+  hosts: all
+  vars:
+    user_list: ["user01", "user02", "user03"]
+  tasks: 
+    - user:
+        name: "{{ item }}"
+        state: absent
+      when:  ansible_facts['hostname'] == "host2"
+      loop: "{{ user_list }}"

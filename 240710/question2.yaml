@@ -1,0 +1,9 @@
+- name: package setting
+  hosts: all
+  vars:
+    st: latest
+  tasks: 
+    - name: "Install {{ pkg_name }}"
+      dnf:
+        name: "{{ pkg_name | default('nfs-utils')}}"
+        state: "{{ st }}" 

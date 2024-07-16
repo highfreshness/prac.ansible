@@ -1,0 +1,9 @@
+- name: Create user
+  hosts: host1, host2
+  tasks: 
+    - user:
+        name: ansible-user01
+        uid: 2024
+        group: wheel
+        state: present
+

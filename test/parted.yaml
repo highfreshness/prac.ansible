@@ -1,0 +1,13 @@
+---
+- name: parted test
+  hosts: host1
+  tasks:
+    - name: partitioning
+      parted:
+        # part_start 생략 시 fdisk 기본값과 같은 값이 입력
+        device: /dev/sdb
+        number: 1
+        part_end: 1GiB
+        state: present
+        fs_type: ext4
+...

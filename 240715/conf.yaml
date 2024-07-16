@@ -1,0 +1,15 @@
+- name: This play is webserver config
+  hosts: host2
+  vars:
+    svc_name: httpd
+    svc_st: restarted
+    svc_en: true
+  tasks:
+    # - import_tasks: service.yaml
+    #   loop:
+    #     - httpd
+    #     - sshd
+    - include_tasks: service.yaml
+      loop:
+        - httpd
+        - sshd

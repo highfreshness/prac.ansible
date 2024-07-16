@@ -1,0 +1,14 @@
+---
+- name: test cron
+  hosts: host1
+  tasks:
+    - name: cron job add
+      cron:
+        name: test cron
+        weekday: "2"
+        minute: "0"
+        hour: "12"
+        user: "root"
+        job: "ls -l /tmp"
+        cron_file: test_cron
+...

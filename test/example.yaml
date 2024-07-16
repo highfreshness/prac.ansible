@@ -1,0 +1,17 @@
+- name: user delete
+  hosts: host1,host2,host3
+  tasks:
+    - name: user01 delete
+      user:
+        name: "{{ user_name }}"
+        state: "{{ user_st }}"
+
+    - name: user02 create
+      user:
+        name: "{{ user_name }}"
+        state: "{{ user_st }}"
+
+    - name: user03 create
+      user:
+        name: "{{ user_name }}"
+        state: "{{ user_st }}"

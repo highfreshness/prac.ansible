@@ -1,0 +1,9 @@
+- name: test delegate
+  hosts: host1
+  tasks:
+    - name: create file
+      file: 
+        name: /tmp/test_delegate
+        state: touch
+      delegate_to: host2
+    

@@ -1,0 +1,19 @@
+- name: User Create with password_prompt
+  hosts: host1
+  vars_prompt:
+    - name: username
+      prompt: Enter username
+      private: false
+      default: admin
+
+    - name: hashed_password
+      prompt: Enter Password
+      private: true
+      encrypt: sha512_crypt
+      confirm: true
+      salt_size: 16
+  tasks:  
+    - name: Create user
+      user: 
+        name: "{{ username }}"
+        password: "{{ hashed_password }}"

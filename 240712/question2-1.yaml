@@ -1,0 +1,37 @@
+- name: question2 - conditional 
+  hosts: host2
+  vars:
+    test_vars: 100
+    mypath: /etc/hosts
+  tasks:
+    - name: test_vars == 100
+      service:
+        name: sshd
+        state: restarted
+      when: test_vars == 100
+    - name: test_vars != 200
+      service:
+        name: sshd
+        state: restarted
+      when: test_vars != 200
+    - name: test_vars > 100
+      service:
+        name: sshd
+        state: restarted
+      when: test_vars > 100
+    - name: test_vars <= 100
+      service:
+        name: sshd
+        state: restarted
+      when: test_vars <= 100
+    - name: Path directory check 
+      debug:
+        msg: "Path is derectory"
+      when: mypath is directory
+    - name: Path file check
+      debug:
+        msg: "Path is file"
+      when: mypath is file
+
+
+

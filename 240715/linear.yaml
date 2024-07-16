@@ -1,0 +1,22 @@
+- name: linear strategy test
+  hosts: all
+  strategy: debug
+  # serial: 2
+  tasks:
+    - name: task1
+      command: sleep 2
+      # debug:
+      #   msg: "{{ ansible_hostname }} 1st task" 
+    - name: task2
+      command: sleep 2
+      # debug:
+      #   msg: "{{ ansible_hostname }} 2st task"
+    - name: task3
+      command: sleep 2
+      # debug:
+      #   msg: "{{ ansible_hostname }} 3st task"
+    - name: task4
+      command: sleep 2
+      # debug:
+      #   msg: "{{ ansible_hostname }} 4st task"
+

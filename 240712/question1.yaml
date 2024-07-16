@@ -1,0 +1,34 @@
+- name: loop_question
+  hosts: host2
+  vars:
+    userinfo: [{name: "user01", uid: 3000}, {name: "user02", uid: 3001}, {name: "user03", uid: 3002}]
+    pkg_name: ['httpd', 'nfs-utils', 'bind']
+    service_name: ['httpd', 'nfs-server', 'named', 'sshd']
+    enable_firewall: ['http', 'dns', 'nfs']
+  tasks:
+    - name: qustion1 - create user use loop
+      user: 
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+      loop: "{{userinfo}}"
+    
+    - name: qustion2 - Install package use loop
+      dnf: 
+        name: "{{ item }}"
+        state: present
+      loop: "{{pkg_name}}"
+
+    - name: qustion3 - Active service use loop
+      service: 
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop: "{{service_name}}"
+
+    - name: qustion4 - Enable service in firewall
+      firewalld: 
+        service: "{{ item }}"
+        immediate: true
+        permanent: true
+        state: enabled
+      loop: "{{enable_firewall}}"

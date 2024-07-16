@@ -1,0 +1,7 @@
+- name : create user
+  hosts: host2
+  tasks: 
+    - user:
+        name: "{{ item }}"
+        state: present
+      loop: ["user01", "user02", "user03"]

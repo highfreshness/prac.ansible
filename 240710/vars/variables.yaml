@@ -1,0 +1,4 @@
+    user_name: ansible-user02
+    uid_num: 2030
+    basic_group: vagrant
+    st: present

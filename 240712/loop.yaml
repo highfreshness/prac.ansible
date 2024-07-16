@@ -1,0 +1,37 @@
+- name: test loop
+  hosts: host1
+  vars:
+    user_list: [ "testuser5", "testuser6" ]
+  tasks:
+    - name: add user testuser1
+      user:
+        name: testuser1
+        state: present
+        groups: wheel
+    - name: add user testuser2
+      user:
+        name: testuser1
+        state: present
+        groups: wheel
+    - name: add user loop
+      user:
+        name: "{{ item }}"
+        state: present
+        groups: wheel
+      loop:
+        - testuser3
+        - testuser4
+    - name: add user item_list
+      user:
+        name: "{{ item }}"
+        state: present
+        groups: wheel
+      loop: "{{ user_list }}"
+    - name: add several users dict
+      user:
+        name: "{{ item.name }}"
+        groups: "{{ item.groups }}"
+        state: present
+      loop: 
+        - {name: "testuser7", groups: 'wheel' }
+        - {name: "testuser8", groups: 'vagrant' }

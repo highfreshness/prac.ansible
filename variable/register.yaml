@@ -1,0 +1,13 @@
+---
+- name: register test
+  hosts: host1
+  tasks:
+    - name: create user
+      user:
+        name: register_user01
+        state: present
+      register: debug_result
+    - name: print register uid only
+      debug: 
+        msg: "{{ debug_result['uid'] }}"
+...

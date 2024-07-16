@@ -1,0 +1,6 @@
+- name: "service control {{ item }}"
+  service:
+    name: "{{ svc_name }}"
+    state: "{{ svc_st }}"
+    enabled: "{{ svc_en }}"
+  tags: service

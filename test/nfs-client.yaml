@@ -1,0 +1,28 @@
+- name: nfs-test
+  hosts: host1
+  tasks:
+    - name: Install nfs-utils package
+      dnf:
+        name: nfs-utils
+        state: latest
+
+    - name: nfs enable & start
+      become: true
+      command: 
+        cmd: systemctl enable --now nfs-server
+
+    # - name: nfs-mount
+    #   become: true
+    #   command: 
+    #     cmd: mount -t nfs -o rw,sync 192.168.56.100:/home/vagrant/test /home/vagrant/nfs_test
+
+    - name: mount setting
+      become: true
+      lineinfile: 
+        path: /etc/fstab
+        line: "192.168.56.100:/home/vagrant/test /home/vagrant/nfs_test nfs defaults 0 1"
+        state: present
+
+    - name: final mount
+      become: true
+      command: mount -a

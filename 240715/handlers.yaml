@@ -1,0 +1,12 @@
+- name: This play is webserver config
+  hosts: host2
+  vars:
+    pkg_name: httpd
+    pkg_st: latest
+  tasks:
+    - name: task1
+      command: ls /tmp
+      notify: package manage
+  handlers:
+    - import_tasks: package.yaml
+    # - include_tasks: package.yaml

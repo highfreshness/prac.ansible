@@ -1,0 +1,6 @@
+- name: test magic vars
+  hosts: ctrl-node, host1
+  tasks: 
+    - name: using debug
+      debug: 
+        msg: "{{ hostvars['host1']['ansible_local'] }}"

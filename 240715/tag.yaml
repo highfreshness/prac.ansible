@@ -1,0 +1,17 @@
+- name: This play is webserver config
+  hosts: host2
+  vars:
+    pkg_name: httpd
+    pkg_st: latest
+    svc_name: httpd
+    svc_st: restarted
+    svc_en: true
+    fw_service: httpd
+    fw_st: enabled
+  tasks:
+    # - import_tasks: package.yaml
+    # - import_tasks: service.yaml
+    # - import_tasks: fw.yaml
+    - include_tasks: package.yaml
+    - include_tasks: service.yaml
+    - include_tasks: fw.yaml    

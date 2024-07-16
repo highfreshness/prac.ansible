@@ -1,0 +1,7 @@
+- name: firewall rule settings
+  firewalld:
+    service: "{{ fw_service }}"
+    state: "{{ fw_st }}"
+    immediate: true
+    permanent: true
+  tags: firewall

@@ -1,0 +1,14 @@
+- name: Create user
+  hosts: host1, host2
+  vars:
+    user_name: ansible-user03
+    uid_num: 2040
+    basic_group: vagrant
+    st: absent
+  tasks: 
+    - user:
+        name: "{{ user_name }}"
+        uid: "{{ uid_num }}"
+        group: "{{ basic_group }}"
+        state: "{{ st }}"
+

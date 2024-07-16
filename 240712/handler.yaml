@@ -1,0 +1,25 @@
+- name: Verify apache installation
+  hosts: host1
+  vars:
+    http_port: 443
+    max_clients: 200
+  tasks:
+    - name: Ensure apache is at the latest version
+      dnf:
+        name: httpd
+        state: latest
+
+    - name: Write the apache config file
+      lineinfile:
+        line: Listen {{ http_port }}
+        regexp: ^Listen 80
+        path: /etc/httpd/conf/httpd.conf
+      notify:
+        - Restart apache
+
+  handlers:
+    - name: Restart apache
+      service:
+        name: httpd
+        state: restarted
+           

@@ -1,0 +1,12 @@
+- name: fetch module test
+  hosts: host1
+  tasks:
+    - name: test fetch
+      fetch:
+        src: /etc/hosts
+        dest: /tmp
+    - name: test fetch
+      fetch:
+        src: /etc/hosts
+        dest: /tmp/newdir
+        flat: true

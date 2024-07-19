@@ -1,0 +1,6 @@
+---
+- name: service enable
+  service:
+    name: "{{ pkg_name }}"
+    state: started
+    enabled: true

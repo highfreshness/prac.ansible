@@ -1,0 +1,8 @@
+---
+- name: enable firewalld 
+  firewalld:
+    service: "{{ fw_service }}"
+    state: enabled
+    immediate: true
+    permanent: true
+

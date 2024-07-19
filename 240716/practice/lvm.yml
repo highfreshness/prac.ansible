@@ -1,0 +1,23 @@
+---
+- name: make logical volume
+  hosts: host2
+  tasks:
+    - lvol:
+        vg: ansible-vg
+        lv: ansible-lv
+        size: 1G
+        pvs: /dev/sdb
+        state: present
+    - filesystem:
+        fstype: xfs  
+        dev: /dev/ansible-vg/ansible-lv
+        state: present
+    - mount:
+        path: /mnt/lvm
+        src: /dev/ansible-vg/ansible-lv
+        opts: defaults
+        fstype: xfs
+        state: present
+
+      
+    

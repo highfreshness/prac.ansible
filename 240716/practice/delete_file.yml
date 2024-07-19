@@ -1,0 +1,10 @@
+---
+- name: Delete file
+  hosts: all
+  tasks: 
+    - file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/yum.repos.d/epel.repo
+        - /etc/yum.repos.d/epel-test.repo

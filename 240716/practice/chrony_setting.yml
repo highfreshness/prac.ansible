@@ -1,0 +1,9 @@
+---
+- name: Use rhel-system-role 
+  hosts: all
+  vars:
+    timesync_ntp_servers:
+      - hostname: time.bora.net
+        iburst: true
+  roles:
+    - rhel-system-roles.timesync

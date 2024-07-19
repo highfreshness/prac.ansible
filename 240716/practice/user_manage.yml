@@ -1,0 +1,11 @@
+---
+- name: User Manage
+  hosts: host1
+  vars:
+    username: ansibe-user
+    userid: 3030
+  tasks: 
+    - user:
+        name: "{{ username }}"
+        uid: "{{ userid }}"
+        shell: "{{ usershell | default ('/bin/bash') }}"

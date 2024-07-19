@@ -1,0 +1,8 @@
+---
+- name: Install package
+  hosts: all
+  tasks:
+    - name: install
+      dnf:
+        name: "{{ pkg_name }}"
+        state: latest

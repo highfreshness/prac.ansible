@@ -1,0 +1,16 @@
+---
+- name: User Manage2
+  hosts: host1
+  vars_files:
+    - vars/passwd.yml
+  tasks: 
+    - group: 
+       name: ansible-group
+       state: present
+    - user:
+        name: ansibe-user
+        groups: ansible-group
+        password: "{{ passwd | password_hash('sha256') }}"
+        state: present
+
+

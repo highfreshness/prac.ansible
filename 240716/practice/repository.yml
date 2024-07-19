@@ -1,0 +1,12 @@
+---
+- name: Install package
+  hosts: all
+  tasks: 
+    - name: repository setting
+      yum_repository:
+        name: epel-test
+        description: EPEL YUM repo
+        baseurl: http://test.example.com/repo
+        gpgkey: http://test.example.com/gpgkey
+        enabled: false
+        state: present

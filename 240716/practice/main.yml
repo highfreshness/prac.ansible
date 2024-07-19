@@ -1,0 +1,19 @@
+---
+- import_playbook: package.yml
+- name: webserver config
+  hosts: webserver
+  vars: 
+    pkg_name: httpd
+    fw_service: http
+  tasks:
+    - name: enable service
+      include_tasks: service.yml
+
+    - name: enable firewalld
+      include_tasks: fwd.yml
+
+    - name: copy index.html
+      include_tasks: copy.yml
+
+
+  
